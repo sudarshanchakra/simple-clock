@@ -1,106 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- Design by foolishdeveloper.com -->
 <head>
-   <title>Digital Clock Javascript</title>
-   <!--Google Font-->
-   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
-   <!--Stylesheet-->
-   <style media="screen">
-     *,
-*:before,
-*:after{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-body{
-    height: 100vh;
-    background: linear-gradient(
-        135deg,
-        #9cc0e0 50%,
-        #1b72b2 50%
-    );
-}
-.clock{
-    width: 550px;
-    height: 150px;
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 50%;
-    left: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.clock div{
-    position: relative;
-    background-color: #ffffff;
-    height: 100%;
-    width: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Open Sans',sans-serif;
-    font-size: 60px;
-    color: #202020;
-    border-radius: 5px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-    letter-spacing: 3px;
-}
-.clock span{
-    font-weight: bolder;
-    font-size: 60px;
-    color: white;
-}
+    <title>Stylish Digital Clock</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0a0a0a, #212121);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
-   </style>
+        .clock {
+            display: flex;
+            font-family: 'Open Sans', sans-serif;
+        }
 
+        .digit {
+            background-color: #121212;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            font-size: 3rem;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border: 2px solid white;
+        }
+
+        .divider {
+            font-weight: bold;
+            color: #ff5722;
+            font-size: 2rem;
+            align-self: center;
+        }
+    </style>
 </head>
 <body>
     <div class="clock">
-        <div id="hour">00</div>
-        <span>:</span>
-        <div id="minute">00</div>
-        <span>:</span>
-        <div id="seconds">00</div>
+        <div class="digit" id="hour">00</div>
+        <div class="divider">:</div>
+        <div class="digit" id="minute">00</div>
+        <div class="divider">:</div>
+        <div class="digit" id="seconds">00</div>
     </div>
-    <!--Script-->
     <script>
-var hour = document.getElementById("hour");
-var minute = document.getElementById("minute");
-var seconds = document.getElementById("seconds");
+        function updateClock() {
+            const hour = document.getElementById("hour");
+            const minute = document.getElementById("minute");
+            const seconds = document.getElementById("seconds");
 
-var clock = setInterval(
-    function time(){
-      var date_now = new Date();
-      var hr = date_now.getHours();
-      var min = date_now.getMinutes();
-      var sec = date_now.getSeconds();
+            const date = new Date();
+            const hr = String(date.getHours()).padStart(2, "0");
+            const min = String(date.getMinutes()).padStart(2, "0");
+            const sec = String(date.getSeconds()).padStart(2, "0");
 
-      if(hr < 10){
-          hr = "0" + hr;
-      }
-      if(min < 10){
-          min = "0" + min;
-      }
-      if(sec < 10){
-          sec = "0" + sec;
-      }
+            hour.textContent = hr;
+            minute.textContent = min;
+            seconds.textContent = sec;
+        }
 
-      hour.textContent = hr;
-      minute.textContent = min;
-      seconds.textContent = sec;
-
-
-
-    },1000
-);
-
+        updateClock();
+        setInterval(updateClock, 1000);
     </script>
 </body>
 </html>
-Run Pen
-
-
-Resources
